@@ -3,10 +3,10 @@
 
     2.    tornado,supervior,nginx
 
-    3.    python,tornado,pyjwt,pymongodb
+    3.    python,tornado,pyjwt,pymongodb，restful
 
 ### table
-    1.database:wechatSys
+    1.database:wechat
     2.tables:
         User:
             id
@@ -21,6 +21,12 @@
             qq
             tel
             profession
+            area
+        
+        Infomation:
+
+
+
 
 
 

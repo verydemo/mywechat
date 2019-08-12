@@ -1,0 +1,1 @@
+from .objmongodb import objmongo
