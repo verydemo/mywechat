@@ -1,4 +1,4 @@
-import os
+import os,sys
 import tornado.ioloop
 import tornado.web
 
@@ -28,12 +28,16 @@ class Application(tornado.web.Application):
             mongodb["db_host"], mongodb["db_port"], mongodb["db_name"])
 
 
-def main():
+def main(port):
     application = Application()
-    print("port is {}".format(config["port"]))
-    application.listen(config["port"])
+    print("port is {}".format(port))
+    application.listen(port)
     tornado.ioloop.IOLoop.instance().start()
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        port=int(sys.argv[1])
+    except:
+        port=8888
+    main(port)

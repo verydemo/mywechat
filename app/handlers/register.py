@@ -34,5 +34,5 @@ class registerHandler(BaseHandler):
                 status = 101
                 res = "Username has already been registered"
 
-        self.write({"data": res, "status": status})
+        self.write({"user": login, "status": status})
         self.finish()
