@@ -1,18 +1,14 @@
 import os
 import tornado.ioloop
-from tornado.options import define, options, parse_command_line
 import tornado.web
 
 import app.handlers.login as ah_login
 import app.handlers.register as ah_register
 import app.handlers.test as ah_test
 import app.objects.objmongodb as ao_objmongodb
+import app.utils.util as au_util
 
-define("debug", default=True, help="Executar o servidor em modo debug", type=bool)
-define("port", default=8080, help="api post", type=int)
-define("db_port", default=27017, help="db post", type=int)
-define("db_host", default="192.168.112.129", help="mongodb IP")
-define("db_name", default="wechat", help="mongodb db name")
+config = au_util.getConfig()
 
 
 class Application(tornado.web.Application):
@@ -22,21 +18,20 @@ class Application(tornado.web.Application):
             (r"/register", ah_register.registerHandler),
             (r"/test", ah_test.testHandler),
         ]
+        self.config = config
         settings = dict(
-            debug=options.debug,
-        )
+            debug=self.config["debug"],
+            )
         tornado.web.Application.__init__(self, handlers, **settings)
-
-        # create mongodb object and Init data
+        mongodb = self.config["mongodb"]
         self.objmongo = ao_objmongodb.objmongo(
-            options.db_host, options.db_port, options.db_name)
+            mongodb["db_host"], mongodb["db_port"], mongodb["db_name"])
 
 
 def main():
-    tornado.options.parse_command_line()
     application = Application()
-    print("port is {}".format(options.port))
-    application.listen(options.port)
+    print("port is {}".format(config["port"]))
+    application.listen(config["port"])
     tornado.ioloop.IOLoop.instance().start()
 
 
