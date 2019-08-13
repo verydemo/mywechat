@@ -1,0 +1,9 @@
+{
+    "debug": true,
+    "port": 8080,
+    "mongodb": {
+        "db_host": "192.168.112.129",
+        "db_port": 27017,
+        "db_name": "wechat"
+    }
+}

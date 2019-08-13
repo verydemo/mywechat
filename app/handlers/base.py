@@ -1,13 +1,11 @@
-# -*- coding: utf-8 -*-
-
 import tornado
+
 
 class BaseHandler(tornado.web.RequestHandler):
 
     @property
     def objmongo(self):
         return self.application.objmongo
-
 
     def options(self):
         pass
