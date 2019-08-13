@@ -21,11 +21,9 @@
 
 #### API返回状态
 
-|状态码 | 说明|状态码|说明
-|:---- | :------|:---|:---
-| L10 | login success | x10 | login fail |
-| L11 | register success | x11 | register fail |
-| L12 | |x12 |token expired|
-| L13 | |x13|token invalid
-
+|状态码 | 说明|状态码|说明|状态码|说明
+|:---- | :------|:---|:---|:---|:---
+| A10 | login success | B10 | wrong username or password|
+| A11 | register success | B11 |invalid username or password |C11|already been registered
+| A12 | token expired|B12 |token invalid|C12|missing authorization|
 

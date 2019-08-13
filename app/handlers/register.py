@@ -24,15 +24,14 @@ class registerHandler(BaseHandler):
                 id=au_mogon.getNextValue(self.objmongo.db,"user")
                 result=t_user.insert({'_id':id ,'username':login,'password':password})
                 if result is not None :
-                    dataToken = {"id": id, "login": data["username"]}
-                    status = 200
-                    res = dataToken
+                    status = "A11"
+                    res = 'register success'
                 else:
-                    status = 102
+                    status = "B11"
                     res = "Invalid Username or Password."
             else:
-                status = 101
+                status = "C11"
                 res = "Username has already been registered"
 
-        self.write({"user": login, "status": status})
+        self.write({"user": login, "status": status,'msg':res})
         self.finish()

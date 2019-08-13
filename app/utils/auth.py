@@ -22,17 +22,20 @@ def jwtauth(handler_class):
                 if parts[0].lower() != 'bearer':
                     handler._transforms = []
                     handler.set_status(401)
-                    handler.write("invalid header authorization")
+                    handler.write(
+                        {"status": "B12", "msg": "invalid header authorization"})
                     handler.finish()
                 elif len(parts) == 1:
                     handler._transforms = []
                     handler.set_status(401)
-                    handler.write("invalid header authorization")
+                    handler.write(
+                        {"status": "B12", "msg": "invalid header authorization"})
                     handler.finish()
                 elif len(parts) > 2:
                     handler._transforms = []
                     handler.set_status(401)
-                    handler.write("invalid header authorization")
+                    handler.write(
+                        {"status": "B12", "msg": "invalid header authorization"})
                     handler.finish()
 
                 token = parts[1]
@@ -42,23 +45,23 @@ def jwtauth(handler_class):
                         return payload
                     else:
                         raise jwt.InvalidTokenError
-            
+
                 except jwt.ExpiredSignatureError:
                     handler._transforms = []
                     handler.set_status(401)
-                    handler.write({"status":"401","msg":"token expired"})
-
+                    handler.write({"status": "A12", "msg": "token expired"})
                     handler.finish()
-            
+
                 except jwt.InvalidTokenError:
                     handler._transforms = []
                     handler.set_status(401)
-                    handler.write({"status":"401","msg":"invalid token"})
+                    handler.write({"status": "B12", "msg": "invalid token"})
                     handler.finish()
             else:
                 handler._transforms = []
-                handler.write("Missing authorization")
-                handler.write({"status":"401","msg":"Missing authorization"})
+                handler.set_status(401)
+                handler.write(
+                    {"status": "C12", "msg": "missing authorization"})
                 handler.finish()
 
             return True

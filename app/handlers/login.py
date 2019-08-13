@@ -29,12 +29,12 @@ class AuthHandler(BaseHandler):
                 header={'type':'JWT',"alg":"HS256",'userid':result["_id"]}
                 playload={'header':header,'iss':'zjl','exp':datetime.datetime.utcnow() + datetime.timedelta(seconds=60*60*12),'iat':datetime.datetime.utcnow()}
                 token = jwt.encode(playload, "lxlzjl", algorithm='HS256').decode('ascii')
-                status = 200
-                res = result
+                status = "A10"
+                res = "login success"
             else:
                 token = None
-                status = 100
+                status = "B10"
                 res = "wrong username or password."
 
-        self.write({'username':username, "result": status, "token": token})
+        self.write({'username':username, "status": status,"msg":res, "token": token})
         self.finish()
