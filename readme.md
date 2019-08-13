@@ -22,12 +22,12 @@
 
 ### API返回状态
 
-    |状态|说明|状态|说明|
-    | - | - | - | - |
-    |L10|login success|x10|login fail|
-    |L11|register success|x11|register fail|
-    |L12|token invalid|||
-    |L13|token expired|||
+    状态|说明|状态|说明
+     - | - | - | - 
+    L10|login success|x10|login fail
+    L11|register success|x11|register fail
+    L12|token invalid
+    L13|token expired
 
 
 
