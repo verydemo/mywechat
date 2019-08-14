@@ -14,7 +14,9 @@ class registerHandler(BaseHandler):
             login = data["username"]
             password = data["password"]
         except:
-            self.set_status(403)
+            res = "Invalid Username or Password."
+            self.gen_data("101","fail",res)
+            self.finish()
             return
 
         if password:
@@ -24,14 +26,12 @@ class registerHandler(BaseHandler):
                 id=au_mogon.getNextValue(self.objmongo.db,"user")
                 result=t_user.insert({'_id':id ,'username':login,'password':password})
                 if result is not None :
-                    status = "A11"
                     res = 'register success'
+                    self.gen_data("200","success",res)
                 else:
-                    status = "B11"
                     res = "Invalid Username or Password."
+                    self.gen_data("102","fail",res)
             else:
-                status = "C11"
                 res = "Username has already been registered"
-
-        self.write({"user": login, "status": status,'msg':res})
+                self.gen_data("103","fail",res)
         self.finish()

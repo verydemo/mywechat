@@ -18,7 +18,8 @@ class AuthHandler(BaseHandler):
             username = self.get_argument("username")
             password=self.get_argument("password")
         except:
-            self.set_status(403)
+            res = {"token": ""}
+            self.gen_data("101","fail",res)
             return
 
         if password:
@@ -29,12 +30,9 @@ class AuthHandler(BaseHandler):
                 header={'type':'JWT',"alg":"HS256",'userid':result["_id"]}
                 playload={'header':header,'iss':'zjl','exp':datetime.datetime.utcnow() + datetime.timedelta(seconds=60*60*12),'iat':datetime.datetime.utcnow()}
                 token = jwt.encode(playload, "lxlzjl", algorithm='HS256').decode('ascii')
-                status = "A10"
-                res = "login success"
+                res = {"token": token}
+                self.gen_data("200","success",res)
             else:
-                token = None
-                status = "B10"
-                res = "wrong username or password."
-
-        self.write({'username':username, "status": status,"msg":res, "token": token})
+                res = {"token": ""}
+                self.gen_data("102","fail",res)
         self.finish()

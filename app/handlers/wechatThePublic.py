@@ -17,7 +17,7 @@ class wechatThePublicHandler(BaseHandler):
         try:
             data["username"] = self.get_argument("username","")
             if data["username"]=="":
-                self.gen_data("102","fail","")
+                self.gen_data("101","fail","")
                 self.finish()
                 return
             data["industry"] = self.get_argument("industry","")
@@ -31,7 +31,7 @@ class wechatThePublicHandler(BaseHandler):
             data["phone"] = self.get_argument("phone","")
             data["qq"] = self.get_argument("qq","")
         except:
-            self.gen_data("101","fail","")
+            self.gen_data("102","fail","")
             self.finish()
             return
         print(data)
@@ -40,9 +40,9 @@ class wechatThePublicHandler(BaseHandler):
         result=t_wechatThePublic.insert(data)
         if result is not None :
             res={"user":user}
-            self.gen_data("success","success",res)
+            self.gen_data("200","success",res)
             self.finish()
         else:
             res={"user":user}
-            self.gen_data("fail","fail",res)
+            self.gen_data("103","fail",res)
             self.finish()
