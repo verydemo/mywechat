@@ -25,6 +25,6 @@ def gen_auth_token():
 def getConfig():
     with open('config.json','r',encoding='utf-8') as f:
         return json.loads(f.read())
-
+        
 # if __name__ == "__main__":
 #     print(getConfig())

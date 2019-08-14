@@ -5,6 +5,11 @@ import tornado.web
 import app.handlers.login as ah_login
 import app.handlers.register as ah_register
 import app.handlers.test as ah_test
+import app.handlers.wechatGroup as ah_wechatGroup
+import app.handlers.wechatBusiness as ah_wechatBusiness
+import app.handlers.wechatPersonal as ah_wechatPersonal
+import app.handlers.wechatThePublic as ah_wechatThePublic
+
 import app.objects.objmongodb as ao_objmongodb
 import app.utils.util as au_util
 
@@ -17,6 +22,10 @@ class Application(tornado.web.Application):
             (r"/login", ah_login.AuthHandler),
             (r"/register", ah_register.registerHandler),
             (r"/test", ah_test.testHandler),
+            (r"/wechatGroup", ah_wechatGroup.wechatGroupHandler),
+            (r"/wechatBusiness", ah_wechatBusiness.wechatBusinessHandler),
+            (r"/wechatPersonal", ah_wechatPersonal.wechatPersonalHandler),
+            (r"/wechatThePublic", ah_wechatThePublic.wechatThePublicHandler),
         ]
         self.config = config
         settings = dict(

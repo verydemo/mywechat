@@ -8,16 +8,63 @@
             passwd
             level
             valid
-            name
             wechat
-            wechat_name
-            wechat_img
             qq
             tel
-            profession
-            area
 
         Infomation:
+            wechatGroup:
+                industry
+                area
+                groupName
+                groupIntroduction
+                groupHeadImg
+                groupQRImg
+                groupMasterwechat
+                groupMasterQRImg
+                name
+                phone
+                qq
+                username
+
+            wechatPersonal:
+                industry
+                area
+                wechat
+                wechatIntroduction
+                wechatHeadImg
+                wechatQRImg
+                name
+                phone
+                qq
+                username
+
+            wechatThePublic:
+                industry
+                area
+                publicName
+                publicId
+                publicCoverImg
+                publicQRImg
+                introducer
+                name
+                phone
+                qq
+                username
+
+            wechatBusiness:
+                industry
+                area
+                groupName
+                groupIntroduction
+                groupHeadImg
+                groupQRImg
+                groupMasterwechat
+                groupMasterQRImg
+                name
+                phone
+                qq
+                username
 
 #### API返回状态
 
