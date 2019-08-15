@@ -6,5 +6,5 @@ class objmongo(object):
         self.client = pymongo.MongoClient(host=host,port=port)
         self.db=self.client[db]
         self.id=self.db["id"]
-        au_mogon.initData(self.db)
+        # au_mogon.initData(self.db)
 

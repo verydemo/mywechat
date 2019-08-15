@@ -12,10 +12,9 @@ def clearColldata(db,collection_names):
         ret=db[name].delete_many({}) 
 
 # 
-def initData(db):
-    print("")
+def initData(db):  
     # db.command("dropDatabase")
     # clearColldata(db,["user","id"])
     # db.id.insert({'id_name':'user','sequence_value':0})
-
+    pass
 
