@@ -10,11 +10,11 @@ options = {
 }
 
 
-def jwtauth(handler_class):
+def jwtauth(handler_class,methods=["POST","PUT","DELETE"]):
     ''' Handle Tornado JWT Auth '''
     def wrap_execute(handler_execute):
         def require_auth(handler, kwargs):
-
+            
             auth = handler.request.headers.get('Authorization')
             if auth:
                 parts = auth.split()
@@ -23,19 +23,19 @@ def jwtauth(handler_class):
                     handler._transforms = []
                     handler.set_status(401)
                     handler.write(
-                        {"status": "B12", "msg": "invalid header authorization"})
+                        {"status": "101", "msg": "invalid header authorization"})
                     handler.finish()
                 elif len(parts) == 1:
                     handler._transforms = []
                     handler.set_status(401)
                     handler.write(
-                        {"status": "B12", "msg": "invalid header authorization"})
+                        {"status": "101", "msg": "invalid header authorization"})
                     handler.finish()
                 elif len(parts) > 2:
                     handler._transforms = []
                     handler.set_status(401)
                     handler.write(
-                        {"status": "B12", "msg": "invalid header authorization"})
+                        {"status": "101", "msg": "invalid header authorization"})
                     handler.finish()
 
                 token = parts[1]
@@ -49,19 +49,19 @@ def jwtauth(handler_class):
                 except jwt.ExpiredSignatureError:
                     handler._transforms = []
                     handler.set_status(401)
-                    handler.write({"status": "A12", "msg": "token expired"})
+                    handler.write({"status": "102", "msg": "token expired"})
                     handler.finish()
 
                 except jwt.InvalidTokenError:
                     handler._transforms = []
                     handler.set_status(401)
-                    handler.write({"status": "B12", "msg": "invalid token"})
+                    handler.write({"status": "103", "msg": "invalid token"})
                     handler.finish()
             else:
                 handler._transforms = []
                 handler.set_status(401)
                 handler.write(
-                    {"status": "C12", "msg": "missing authorization"})
+                    {"status": "104", "msg": "missing authorization"})
                 handler.finish()
 
             return True
@@ -69,7 +69,10 @@ def jwtauth(handler_class):
         def _execute(self, transforms, *args, **kwargs):
 
             try:
-                require_auth(self, kwargs)
+                if self.request.method in methods:
+                    require_auth(self, kwargs)
+                else:
+                    return False
             except Exception:
                 return False
 
@@ -77,5 +80,9 @@ def jwtauth(handler_class):
 
         return _execute
 
+    
     handler_class._execute = wrap_execute(handler_class._execute)
+
     return handler_class
+
+
