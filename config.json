@@ -1,10 +1,10 @@
 {
     "debug": true,
     "mongodb": {
-        "db_host": "192.168.112.129",
+        "db_host": "127.0.0.1",
         "db_port": 27017,
         "db_name": "wechat"
     },
-    "toFloder":"D://tmp/share",
-    "shareFloder":"http://111.230.233.49:8080/share"
+    "toFloder":"/home/ubuntu/data",
+    "shareFloder":"http://111.230.233.49:9000/"
 }

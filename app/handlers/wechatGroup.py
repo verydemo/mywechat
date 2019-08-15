@@ -29,7 +29,7 @@ class wechatGroupHandler(BaseHandler):
             data["groupHeadImg"]=self.get_file("groupHeadImg",data["username"])
             data["groupQRImg"]=self.get_file("groupQRImg",data["username"])
             data["groupMasterwechat"] = self.get_argument("groupMasterwechat","")
-            data["groupMasterQRImg"] = self.get_argument("groupMasterQRImg","")
+            data["groupMasterQRImg"] = self.get_file("groupMasterQRImg",data["username"])
             data["name"] = self.get_argument("name","")
             data["phone"] = self.get_argument("phone","")
             data["qq"] = self.get_argument("qq","")

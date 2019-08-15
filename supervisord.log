@@ -1,0 +1,32 @@
+2019-08-14 21:26:43,490 INFO daemonizing the supervisord process
+2019-08-14 21:26:43,491 INFO supervisord started with pid 31602
+2019-08-14 21:26:44,493 INFO spawned: 'tornado-1' with pid 31611
+2019-08-14 21:26:44,495 INFO spawned: 'tornado-0' with pid 31612
+2019-08-14 21:26:44,496 INFO spawned: 'tornado-2' with pid 31613
+2019-08-14 21:26:45,497 INFO success: tornado-1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 21:26:45,497 INFO success: tornado-0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 21:26:45,497 INFO success: tornado-2 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 21:45:07,470 INFO daemonizing the supervisord process
+2019-08-14 21:45:07,470 INFO supervisord started with pid 2470
+2019-08-14 21:45:08,473 INFO spawned: 'tornado-1' with pid 2474
+2019-08-14 21:45:08,474 INFO spawned: 'tornado-0' with pid 2475
+2019-08-14 21:45:08,475 INFO spawned: 'tornado-2' with pid 2476
+2019-08-14 21:45:09,477 INFO success: tornado-1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 21:45:09,477 INFO success: tornado-0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 21:45:09,477 INFO success: tornado-2 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 21:49:27,602 INFO daemonizing the supervisord process
+2019-08-14 21:49:27,602 INFO supervisord started with pid 3277
+2019-08-14 21:49:28,604 INFO spawned: 'tornado-1' with pid 3278
+2019-08-14 21:49:28,606 INFO spawned: 'tornado-0' with pid 3279
+2019-08-14 21:49:28,607 INFO spawned: 'tornado-2' with pid 3280
+2019-08-14 21:49:29,609 INFO success: tornado-1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 21:49:29,609 INFO success: tornado-0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 21:49:29,609 INFO success: tornado-2 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 23:25:11,221 INFO daemonizing the supervisord process
+2019-08-14 23:25:11,221 INFO supervisord started with pid 19178
+2019-08-14 23:25:12,224 INFO spawned: 'tornado-1' with pid 19180
+2019-08-14 23:25:12,226 INFO spawned: 'tornado-0' with pid 19181
+2019-08-14 23:25:12,231 INFO spawned: 'tornado-2' with pid 19182
+2019-08-14 23:25:13,232 INFO success: tornado-1 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 23:25:13,232 INFO success: tornado-0 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+2019-08-14 23:25:13,232 INFO success: tornado-2 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)

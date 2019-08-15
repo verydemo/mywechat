@@ -9,6 +9,7 @@ import app.handlers.wechatGroup as ah_wechatGroup
 import app.handlers.wechatBusiness as ah_wechatBusiness
 import app.handlers.wechatPersonal as ah_wechatPersonal
 import app.handlers.wechatThePublic as ah_wechatThePublic
+import app.handlers.wechatArticle as ah_wechatArticle
 
 import app.objects.objmongodb as ao_objmongodb
 import app.utils.util as au_util
@@ -26,6 +27,7 @@ class Application(tornado.web.Application):
             (r"/wechatBusiness", ah_wechatBusiness.wechatBusinessHandler),
             (r"/wechatPersonal", ah_wechatPersonal.wechatPersonalHandler),
             (r"/wechatThePublic", ah_wechatThePublic.wechatThePublicHandler),
+            (r"/wechatArticle", ah_wechatArticle.wechatArticleHandler),
         ]
         self.config = config
         settings = dict(

@@ -26,12 +26,13 @@ class BaseHandler(tornado.web.RequestHandler):
         for avatar in avatars:
             filename = avatar.get('filename')
             data = avatar.get('body')
-            toPath=os.path.join(str(toFloder),str(time.time())+str(key)+os.path.splitext(filename)[1])
+            t=time.time()
+            toPath=os.path.join(str(toFloder),str(t)+str(key)+os.path.splitext(filename)[1])
             with open(toPath,'wb') as writer:
                 writer.write(data)
-            sharePath=os.path.join(str(shareFloder),str(time.time())+str(key)+os.path.splitext(filename)[1])
+            sharePath=os.path.join(str(shareFloder),str(t)+str(key)+os.path.splitext(filename)[1])
         if sharePath!="":
-            return sharePath
+            return sharePath 
         else:
             return False
     

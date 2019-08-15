@@ -5,12 +5,13 @@
         User:
             id
             username
-            passwd
+            password
             level
             valid
             wechat
             qq
             tel
+            time
 
         Infomation:
             wechatGroup:
@@ -26,6 +27,7 @@
                 phone
                 qq
                 username
+                time
 
             wechatPersonal:
                 industry
@@ -38,6 +40,7 @@
                 phone
                 qq
                 username
+                time
 
             wechatThePublic:
                 industry
@@ -51,6 +54,7 @@
                 phone
                 qq
                 username
+                time
 
             wechatBusiness:
                 industry
@@ -65,6 +69,15 @@
                 phone
                 qq
                 username
+                time
+            
+            wechatArticle
+                column
+                articleName
+                articleContent
+                articleCoverImg
+                username
+                time
 
 #### API返回状态
 
