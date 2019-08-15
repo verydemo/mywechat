@@ -1,6 +1,7 @@
 import tornado
 import json
-import traceback
+import datetime
+from dateutil import parser
 
 import app.utils.auth as au_auth
 from .base import BaseHandler
@@ -10,9 +11,12 @@ from .base import BaseHandler
 class wechatArticleHandler(BaseHandler):
 
     def get(self):
-
-        if self.request.headers.get('Authorization'):
-            self.write({"status": 200, "msg": 'ok'})
+        t_wechatArticle=self.objmongo.db["wechatArticle"]
+        qtime=parser.parse((datetime.datetime.utcnow() - datetime.timedelta(seconds=60*60*30)).isoformat())
+        wechatArticles=t_wechatArticle.find({"time":{"$gte":qtime}},{"_id":0,"time":0})
+        wechatArticles=[i for i in wechatArticles]
+        self.gen_data("200","success",wechatArticles)
+        self.finish()
 
     def post(self):
         data = {}
@@ -26,11 +30,11 @@ class wechatArticleHandler(BaseHandler):
             data["articleName"] = self.get_argument("articleName","")
             data["articleContent"] = self.get_argument("articleContent","")
             data["articleCoverImg"]=self.get_file("articleCoverImg",data["username"])
+            data["time"]=parser.parse(datetime.datetime.utcnow().isoformat())
         except:
             self.gen_data("102","fail","")
             self.finish()
             return
-        print(data)
         user=data["username"]
         t_wechatArticle=self.objmongo.db["wechatArticle"]
         result=t_wechatArticle.insert(data)

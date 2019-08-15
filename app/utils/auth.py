@@ -71,8 +71,6 @@ def jwtauth(handler_class,methods=["POST","PUT","DELETE"]):
             try:
                 if self.request.method in methods:
                     require_auth(self, kwargs)
-                else:
-                    return False
             except Exception:
                 return False
 
