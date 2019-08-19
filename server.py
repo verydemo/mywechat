@@ -10,6 +10,7 @@ import app.handlers.wechatBusiness as ah_wechatBusiness
 import app.handlers.wechatPersonal as ah_wechatPersonal
 import app.handlers.wechatThePublic as ah_wechatThePublic
 import app.handlers.wechatArticle as ah_wechatArticle
+import app.handlers.upload as ah_upload
 
 import app.objects.objmongodb as ao_objmongodb
 import app.utils.util as au_util
@@ -24,10 +25,16 @@ class Application(tornado.web.Application):
             (r"/register", ah_register.registerHandler),
             (r"/test", ah_test.testHandler),
             (r"/wechatGroup", ah_wechatGroup.wechatGroupHandler),
+            (r"/wechatGroup/([0-9]+)", ah_wechatGroup.wechatGroupHandler),
             (r"/wechatBusiness", ah_wechatBusiness.wechatBusinessHandler),
+            (r"/wechatBusiness/([0-9]+)", ah_wechatBusiness.wechatBusinessHandler),
             (r"/wechatPersonal", ah_wechatPersonal.wechatPersonalHandler),
+            (r"/wechatPersonal/([0-9]+)", ah_wechatPersonal.wechatPersonalHandler),
             (r"/wechatThePublic", ah_wechatThePublic.wechatThePublicHandler),
+            (r"/wechatThePublic/([0-9]+)", ah_wechatThePublic.wechatThePublicHandler),
             (r"/wechatArticle", ah_wechatArticle.wechatArticleHandler),
+            (r"/wechatArticle/([0-9]+)", ah_wechatArticle.wechatArticleHandler),
+            (r"/upload", ah_upload.uploadHandler),
         ]
         self.config = config
         settings = dict(

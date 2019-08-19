@@ -28,7 +28,7 @@ class registerHandler(BaseHandler):
             if logined.count() == 0 :
                 id=au_mogon.getNextValue(self.objmongo.db,"user")
                 register_time=parser.parse(datetime.datetime.utcnow().isoformat())
-                result=t_user.insert({'_id':id ,'username':login,'password':password,"time":register_time})
+                result=t_user.insert_one({'_id':id ,'username':login,'password':password,"time":register_time})
                 if result is not None :
                     res = 'register success'
                     self.gen_data("200","success",res)

@@ -15,15 +15,15 @@
 
         Infomation:
             wechatGroup:
-                industry
+                industry            
                 area
-                groupName
-                groupIntroduction
-                groupHeadImg
-                groupQRImg
-                groupMasterwechat
-                groupMasterQRImg
-                name
+                groupName -> title
+                groupIntroduction -> desc
+                groupHeadImg -> HeadImg
+                groupQRImg -> QRImg1
+                groupMasterwechat -> wechat
+                groupMasterQRImg -> QRImg2
+                name -> contact
                 phone
                 qq
                 username
@@ -32,11 +32,11 @@
             wechatPersonal:
                 industry
                 area
-                wechat
-                wechatIntroduction
-                wechatHeadImg
-                wechatQRImg
-                name
+                wechat -> wechat,title
+                wechatIntroduction -> desc
+                wechatHeadImg -> HeadImg
+                wechatQRImg -> QRImg1,QRImg2
+                name -> contact
                 phone
                 qq
                 username
@@ -45,12 +45,12 @@
             wechatThePublic:
                 industry
                 area
-                publicName
-                publicId
-                publicCoverImg
-                publicQRImg
-                introducer
-                name
+                publicName -> title
+                publicId -> Id
+                publicCoverImg -> CoverImg
+                publicQRImg -> QRImg1,QRImg2
+                introducer -> desc
+                name -> contact
                 phone
                 qq
                 username
@@ -59,25 +59,21 @@
             wechatBusiness:
                 industry
                 area
-                groupName
-                groupIntroduction
-                groupHeadImg
-                groupQRImg
-                groupMasterwechat
-                groupMasterQRImg
-                name
-                phone
-                qq
+                businessName -> title
+                businessCoverImg -> CoverImg
+                wechatQRImg -> QRImg1,QRImg2
+                wechat
+                businessDesc -> desc
                 username
                 time
             
             wechatArticle
                 column
-                articleName
-                articleContent
-                articleCoverImg
+                articleName -> title
+                articleContent -> Content
+                articleCoverImg -> CoverImg
                 username
-                time
+                time            
 
 ### API
     POST
@@ -89,13 +85,19 @@
     wechatBusiness : http://111.230.233.49:8020/wechatBusiness
     wechatArticle : http://111.230.233.49:8020/wechatArticle
 
-    GET (获取各数据的列表,无需参数，无需token)
-    wechatGroup : http://111.230.233.49:8020/wechatGroup
-    wechatPersonal : http://111.230.233.49:8020/wechatPersonal
-    wechatThePublic : http://111.230.233.49:8020/wechatThePublic
-    wechatBusiness : http://111.230.233.49:8020/wechatBusiness
-    wechatArticle : http://111.230.233.49:8020/wechatArticle
+    GET list (获取各数据的列表，无需token)
+    wechatGroup : http://111.230.233.49:8020/wechatGroup        para:page(industry,area)
+    wechatPersonal : http://111.230.233.49:8020/wechatPersonal  para:page(industry,area)
+    wechatThePublic : http://111.230.233.49:8020/wechatThePublic    para:page(industry,area)
+    wechatBusiness : http://111.230.233.49:8020/wechatBusiness  para:page(industry,area)
+    wechatArticle : http://111.230.233.49:8020/wechatArticle    para:page(industry,area)
 
+    GET id (获取各数据的列表，无需token)
+    wechatGroup : http://111.230.233.49:8020/wechatGroup/id     
+    wechatPersonal : http://111.230.233.49:8020/wechatPersonal/id       
+    wechatThePublic : http://111.230.233.49:8020/wechatThePublic/id
+    wechatBusiness : http://111.230.233.49:8020/wechatBusiness/id
+    wechatArticle : http://111.230.233.49:8020/wechatArticle/id
 
 #### API返回状态
 

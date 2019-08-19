@@ -1,3 +1,1 @@
-sudo pkill -9 supervisord
-sudo pkill -9 python3
-supervisord -c supervisor.config
+pkill -9 supervisord && pkill -9 python3 && supervisord -c /root/first/supervisor.config

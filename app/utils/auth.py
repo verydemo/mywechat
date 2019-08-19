@@ -27,13 +27,13 @@ def jwtauth(handler_class,methods=["POST","PUT","DELETE"]):
                     handler.finish()
                 elif len(parts) == 1:
                     handler._transforms = []
-                    handler.set_status(401)
+                    handler.set_status(402)
                     handler.write(
                         {"status": "101", "msg": "invalid header authorization"})
                     handler.finish()
                 elif len(parts) > 2:
                     handler._transforms = []
-                    handler.set_status(401)
+                    handler.set_status(403)
                     handler.write(
                         {"status": "101", "msg": "invalid header authorization"})
                     handler.finish()
@@ -48,18 +48,18 @@ def jwtauth(handler_class,methods=["POST","PUT","DELETE"]):
 
                 except jwt.ExpiredSignatureError:
                     handler._transforms = []
-                    handler.set_status(401)
+                    handler.set_status(404)
                     handler.write({"status": "102", "msg": "token expired"})
                     handler.finish()
 
                 except jwt.InvalidTokenError:
                     handler._transforms = []
-                    handler.set_status(401)
+                    handler.set_status(405)
                     handler.write({"status": "103", "msg": "invalid token"})
                     handler.finish()
             else:
                 handler._transforms = []
-                handler.set_status(401)
+                handler.set_status(406)
                 handler.write(
                     {"status": "104", "msg": "missing authorization"})
                 handler.finish()

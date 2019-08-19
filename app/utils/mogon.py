@@ -15,6 +15,6 @@ def clearColldata(db,collection_names):
 def initData(db):  
     # db.command("dropDatabase")
     # clearColldata(db,["user","id"])
-    # db.id.insert({'id_name':'user','sequence_value':0})
+    # db.id.insert_one({'id_name':'user','sequence_value':0})
     pass
 

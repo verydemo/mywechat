@@ -1,18 +1,37 @@
 import pymongo
+import json
 
-client=pymongo.MongoClient(host='192.168.112.129',port=27017)
+def getConfig():
+    with open('config.json','r',encoding='utf-8') as f:
+        return json.loads(f.read())
 
-db=client.wechat
+def main():
+    config=getConfig()
+    db_host=config["mongodb"]["db_host"]
+    db_port=config["mongodb"]["db_port"]
+    db_name=config["mongodb"]["db_name"]
+    client=pymongo.MongoClient(host=db_host,port=db_port)
+    db=client[db_name]
 
-# clear db data
-db.command("dropDatabase")
+    # clear db data
+    db.command("dropDatabase")
 
-# set collection user initial value
-db.id.insert({'id_name':'user','sequence_value':0})
+    # set collection user initial value
+    db.id.insert_one({'id_name':'user','sequence_value':0})
+    db.id.insert_one({'id_name':'wechatArticle','sequence_value':0})
+    db.id.insert_one({'id_name':'wechatBusiness','sequence_value':0})
+    db.id.insert_one({'id_name':'wechatGroup','sequence_value':0})
+    db.id.insert_one({'id_name':'wechatPersonal','sequence_value':0})
+    db.id.insert_one({'id_name':'wechatThePublic','sequence_value':0})
+    db.id.insert_one({'id_name':'file','sequence_value':0})
+    db.id.insert_one({'id_name':'upfile','sequence_value':0})
 
-# set index
-# collection.ensure_index('user_name', unique=True)
-# collection.create_index([("word", DESCENDING), ("objURL", ASCENDING)], unique=True)
+    # set index
+    db["wechatArticle"].create_index([("industry", 1), ("area", 1)])
+    db["wechatBusiness"].create_index([("industry", 1), ("area", 1)])
+    db["wechatGroup"].create_index([("industry", 1), ("area", 1)])
+    db["wechatPersonal"].create_index([("industry", 1), ("area", 1)])
+    db["wechatThePublic"].create_index([("industry", 1), ("area", 1)])
 
-# db[""].ensure_index('username', unique=True)
-# db[""].ensure_index('', unique=True)
+if __name__ == "__main__":
+    main()
