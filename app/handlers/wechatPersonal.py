@@ -27,7 +27,7 @@ class wechatPersonalHandler(BaseHandler):
             else:
                 page=1
             data["count"]=t_wechatPersonal.count()
-            collection=t_wechatPersonal.find(query).sort('time',1).limit(36).skip((page-1)*36)
+            collection=t_wechatPersonal.find(query).sort('time',-1).limit(36).skip((page-1)*36)
             for i in collection:
                 i["time"]=i["time"].strftime("%Y-%m-%d")
                 lists.append(i)
@@ -64,10 +64,12 @@ class wechatPersonalHandler(BaseHandler):
             data["industry"] = self.get_argument("industry","")
             data["area"] = self.get_argument("area","")
             data["wechat"] = self.get_argument("wechat","")
-            data["wechatIntroduction"] = self.get_argument("wechatIntroduction","")
-            data["wechatHeadImg"]=self.get_file("wechatHeadImg",data["username"])
-            data["wechatQRImg"]=self.get_file("wechatQRImg",data["username"])
-            data["name"] = self.get_argument("name","")
+            data["title"]=data["wechat"]
+            data["desc"] = self.get_argument("desc","")
+            data["HeadImg"]=self.get_file("HeadImg",data["username"])
+            data["QRImg1"]=self.get_file("QRImg1",data["username"])
+            data["QRImg2"]=data["QRImg1"]
+            data["contact"] = self.get_argument("contact","")
             data["phone"] = self.get_argument("phone","")
             data["qq"] = self.get_argument("qq","")
             data["time"]=parser.parse(datetime.datetime.now().isoformat())

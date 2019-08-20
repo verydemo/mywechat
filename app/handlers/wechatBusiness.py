@@ -26,7 +26,7 @@ class wechatBusinessHandler(BaseHandler):
             else:
                 page=1
             data["count"]=t_wechatBusiness.count()
-            collection=t_wechatBusiness.find(query).sort('time',1).limit(36).skip((page-1)*36)
+            collection=t_wechatBusiness.find(query).sort('time',-1).limit(36).skip((page-1)*36)
             for i in collection:
                 i["time"]=i["time"].strftime("%Y-%m-%d")
                 lists.append(i)
@@ -62,10 +62,11 @@ class wechatBusinessHandler(BaseHandler):
                 return
             data["industry"] = self.get_argument("industry","")
             data["area"] = self.get_argument("area","")
-            data["businessName"] = self.get_argument("businessName","")
-            data["businessDesc"] = self.get_argument("businessDesc","")
-            data["businessCoverImg"]=self.get_file("businessCoverImg",data["username"])
-            data["wechatQRImg"]=self.get_file("wechatQRImg",data["username"])
+            data["title"] = self.get_argument("title","")
+            data["desc"] = self.get_argument("desc","")
+            data["CoverImg"]=self.get_file("CoverImg",data["username"])
+            data["QRImg1"]=self.get_file("QRImg1",data["username"])
+            data["QRImg2"]=data["QRImg1"]
             data["wechat"] = self.get_argument("wechat","")
             data["time"]=parser.parse(datetime.datetime.now().isoformat())
             data['count']=1

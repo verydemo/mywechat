@@ -41,8 +41,8 @@ class BaseHandler(tornado.web.RequestHandler):
     #     else:
     #         return False
     
-    def gen_data(self,statu,msg,res):
-        self.write({"statu":statu,"msg":msg,"data":res})
+    def gen_data(self,status,msg,res):
+        self.write({"status":status,"msg":msg,"data":res})
 
     def get_file(self,name,key):
         

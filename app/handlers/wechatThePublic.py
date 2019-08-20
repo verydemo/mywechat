@@ -26,7 +26,7 @@ class wechatThePublicHandler(BaseHandler):
             else:
                 page=1
             data["count"]=t_wechatThePublic.count()
-            collection=t_wechatThePublic.find(query).sort('time',1).limit(36).skip((page-1)*36)
+            collection=t_wechatThePublic.find(query).sort('time',-1).limit(36).skip((page-1)*36)
             for i in collection:
                 i["time"]=i["time"].strftime("%Y-%m-%d")
                 lists.append(i)
@@ -63,12 +63,13 @@ class wechatThePublicHandler(BaseHandler):
                 return
             data["industry"] = self.get_argument("industry","")
             data["area"] = self.get_argument("area","")
-            data["publicName"] = self.get_argument("publicName","")
-            data["publicId"] = self.get_argument("publicId","")
-            data["publicCoverImg"]=self.get_file("publicCoverImg",data["username"])
-            data["publicQRImg"]=self.get_file("publicQRImg",data["username"])
-            data["introducer"] = self.get_argument("introducer","")
-            data["name"] = self.get_argument("name","")
+            data["title"] = self.get_argument("title","")
+            data["Id"] = self.get_argument("Id","")
+            data["CoverImg"]=self.get_file("CoverImg",data["username"])
+            data["QRImg1"]=self.get_file("QRImg1",data["username"])
+            data["QRImg2"]=data["QRImg1"]
+            data["desc"] = self.get_argument("desc","")
+            data["contact"] = self.get_argument("contact","")
             data["phone"] = self.get_argument("phone","")
             data["qq"] = self.get_argument("qq","")
             data["time"]=parser.parse(datetime.datetime.now().isoformat())

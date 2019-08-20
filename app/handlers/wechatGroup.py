@@ -28,7 +28,7 @@ class wechatGroupHandler(BaseHandler):
             else:
                 page=1
             data["count"]=t_wechatGroup.count()
-            collection=t_wechatGroup.find(query).sort('time',1).limit(36).skip((page-1)*36)
+            collection=t_wechatGroup.find(query).sort('time',-1).limit(36).skip((page-1)*36)
             for i in collection:
                 i["time"]=i["time"].strftime("%Y-%m-%d")
                 lists.append(i)
@@ -50,7 +50,6 @@ class wechatGroupHandler(BaseHandler):
                     self.gen_data("105","fail","para error")
                     self.finish()
             except:
-                trac
                 self.gen_data("104","fail","para error")
                 self.finish()
 
@@ -64,13 +63,13 @@ class wechatGroupHandler(BaseHandler):
                 return
             data["industry"] = self.get_argument("industry","")
             data["area"] = self.get_argument("area","")
-            data["groupName"] = self.get_argument("groupName","")
-            data["groupIntroduction"] = self.get_argument("groupIntroduction","")
-            data["groupHeadImg"]=self.get_file("groupHeadImg",data["username"])
-            data["groupQRImg"]=self.get_file("groupQRImg",data["username"])
-            data["groupMasterwechat"] = self.get_argument("groupMasterwechat","")
-            data["groupMasterQRImg"] = self.get_file("groupMasterQRImg",data["username"])
-            data["name"] = self.get_argument("name","")
+            data["title"] = self.get_argument("title","")
+            data["desc"] = self.get_argument("desc","")
+            data["HeadImg"]=self.get_file("HeadImg",data["username"])
+            data["QRImg1"]=self.get_file("QRImg1",data["username"])
+            data["wechat"] = self.get_argument("wechat","")
+            data["QRImg2"] = self.get_file("QRImg2",data["username"])
+            data["contact"] = self.get_argument("contact","")
             data["phone"] = self.get_argument("phone","")
             data["qq"] = self.get_argument("qq","")
             data["time"]=parser.parse(datetime.datetime.now().isoformat())

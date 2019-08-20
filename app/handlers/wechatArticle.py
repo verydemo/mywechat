@@ -27,7 +27,7 @@ class wechatArticleHandler(BaseHandler):
             else:
                 page=1
             data["count"]=t_wechatArticle.count()
-            collection=t_wechatArticle.find(query).sort('time',1).limit(36).skip((page-1)*36)
+            collection=t_wechatArticle.find(query).sort('time',-1).limit(36).skip((page-1)*36)
             for i in collection:
                 i["time"]=i["time"].strftime("%Y-%m-%d")
                 lists.append(i)
@@ -62,10 +62,9 @@ class wechatArticleHandler(BaseHandler):
                 self.finish()
                 return
             data["column"] = self.get_argument("column", "")
-            data["articleName"] = self.get_argument("articleName", "")
-            data["articleContent"] = self.get_argument("articleContent", "")
-            data["articleCoverImg"] = self.get_file(
-                "articleCoverImg", data["username"])
+            data["title"] = self.get_argument("title", "")
+            data["Content"] = self.get_argument("Content", "")
+            data["CoverImg"] = self.get_file("CoverImg", data["username"])
             data["time"] = parser.parse(datetime.datetime.now().isoformat())
             data['count']=1
             data['type']='wechatArticle'
