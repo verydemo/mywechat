@@ -16,25 +16,34 @@ class wechatArticleHandler(BaseHandler):
             t_wechatArticle = self.objmongo.db["wechatArticle"]
             # qtime = parser.parse((datetime.datetime.now() - datetime.timedelta(seconds=60*60*24*30)).isoformat())
             # query = {"time": {"$gte": qtime}}
-            page= self.get_argument("page", "")
+            recommend= self.get_argument("recommend", "")
             query,data,lists={},{},[]
-            if self.get_argument("industry", "") != "":
-                query['industry'] = self.get_argument("industry", "")
-            if self.get_argument("area", "") != "":
-                query['area'] = self.get_argument("area", "")
-            if page != "" and page.isdigit():
-                page=int(page)
+            if recommend=="1":
+                collection=t_wechatArticle.find().sort('count',-1).limit(15)
+                for i in collection:
+                    i["time"]=i["time"].strftime("%Y-%m-%d")
+                    lists.append(i)
+                self.gen_data("200","success",lists)
+                self.finish()
             else:
-                page=1
-            data["count"]=t_wechatArticle.count()
-            collection=t_wechatArticle.find(query).sort('time',-1).limit(36).skip((page-1)*36)
-            for i in collection:
-                i["time"]=i["time"].strftime("%Y-%m-%d")
-                lists.append(i)
-            data["page"]=page
-            data["data"]=lists
-            self.gen_data("200","success",data)
-            self.finish()
+                page= self.get_argument("page", "")
+                if self.get_argument("industry", "") != "":
+                    query['industry'] = self.get_argument("industry", "")
+                if self.get_argument("area", "") != "":
+                    query['area'] = self.get_argument("area", "")
+                if page != "" and page.isdigit():
+                    page=int(page)
+                else:
+                    page=1
+                data["count"]=t_wechatArticle.count()
+                collection=t_wechatArticle.find(query).sort('time',-1).limit(36).skip((page-1)*36)
+                for i in collection:
+                    i["time"]=i["time"].strftime("%Y-%m-%d")
+                    lists.append(i)
+                data["page"]=page
+                data["data"]=lists
+                self.gen_data("200","success",data)
+                self.finish()
         else:
             try:
                 if int(id) > 0:
